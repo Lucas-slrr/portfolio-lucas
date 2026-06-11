@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio – BTS SIO SISR</title>
+  <meta name="description" content="Portfolio BTS SIO SISR – Infrastructure Systèmes et Réseaux"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:      #f5f0e8;
+      --bg2:     #ede8df;
+      --ink:     #1a1a18;
+      --ink2:    #4a4a44;
+      --ink3:    #9a9a8e;
+      --red:     #c0392b;
+      --border:  #d8d3c8;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'Outfit', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── TOPBAR FIXE ── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: stretch;
+      height: 52px;
+    }
+    .tb-logo {
+      display: flex;
+      align-items: center;
+      padding: 0 1.8rem;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      border-right: 1px solid var(--border);
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+    .tb-nav {
+      display: flex;
+      align-items: stretch;
+      list-style: none;
+      overflow-x: auto;
+      scrollbar-width: none;
+      flex: 1;
+    }
+    .tb-nav::-webkit-scrollbar { display: none; }
+    .tb-nav a {
+      display: flex;
+      align-items: center;
+      padding: 0 1.1rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      text-decoration: none;
+      border-right: 1px solid var(--border);
+      white-space: nowrap;
+      transition: color 0.2s, background 0.2s;
+    }
+    .tb-nav a:hover  { color: var(--ink); background: var(--bg2); }
+    .tb-nav a.active { color: var(--red); }
+    .tb-right {
+      display: flex;
+      align-items: center;
+      padding: 0 1.4rem;
+      border-left: 1px solid var(--border);
+      gap: 0.5rem;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .tb-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); animation: blink 2.5s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+    .tb-status { font-size: 0.73rem; color: var(--ink3); white-space: nowrap; }
+
+    /* Mobile nav */
+    .mob-toggle { display: none; background: none; border: none; padding: 0 1.2rem; cursor: pointer; color: var(--ink); font-size: 1.2rem; }
+    .mob-menu {
+      display: none;
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 199;
+      flex-direction: column;
+    }
+    .mob-menu.open { display: flex; }
+    .mob-menu a { padding: 0.9rem 1.8rem; font-size: 0.9rem; font-weight: 500; color: var(--ink2); text-decoration: none; border-bottom: 1px solid var(--border); }
+    .mob-menu a:hover { background: var(--bg2); }
+
+    @media (max-width: 720px) {
+      .tb-nav, .tb-right { display: none; }
+      .mob-toggle { display: flex; align-items: center; margin-left: auto; }
+    }
+
+    /* ── LAYOUT ── */
+    .page { padding-top: 52px; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: calc(100vh - 52px);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-rows: 1fr auto;
+    }
+    .hero-main {
+      padding: 5rem 4rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 2rem;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(5rem, 12vw, 11rem);
+      line-height: 0.9;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 3rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 3rem;
+      padding: 2rem 4rem;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--ink2);
+      max-width: 400px;
+      line-height: 1.75;
+    }
+    .hero-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: flex-end; }
+    .hero-meta {
+      display: flex;
+      gap: 3rem;
+      padding: 0 4rem 2rem;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {}
+    .hero-meta-item .lbl { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink3); margin-bottom: 0.2rem; }
+    .hero-meta-item .val { font-size: 0.88rem; font-weight: 500; color: var(--ink); }
+
+    .btn-solid {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.65rem 1.4rem;
+      background: var(--ink); color: var(--bg);
+      font-size: 0.83rem; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: background 0.2s;
+    }
+    .btn-solid:hover { background: var(--red); }
+    .btn-bare {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.65rem 1.4rem;
+      background: transparent; border: 1px solid var(--border); color: var(--ink2);
+      font-size: 0.83rem; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-bare:hover { border-color: var(--ink); color: var(--ink); }
+
+    @media (max-width: 700px) {
+      .hero-main { padding: 3rem 1.6rem 2rem; }
+      .hero-bottom { grid-template-columns: 1fr; padding: 1.5rem 1.6rem; gap: 1.5rem; }
+      .hero-btns { justify-content: flex-start; }
+      .hero-meta { padding: 0 1.6rem 1.5rem; gap: 1.5rem; }
+    }
+
+    /* ── SECTIONS GÉNÉRALES ── */
+    .section {
+      border-bottom: 1px solid var(--border);
+    }
+    .section-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+    @media (max-width: 600px) { .section-inner { padding: 3.5rem 1.4rem; } }
+
+    /* En-tête de section — style journal */
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--ink);
+    }
+    .sec-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 400;
+      color: var(--red);
+      line-height: 1;
+    }
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    /* ── À PROPOS ── */
+    .about-cols { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; }
+    @media (max-width: 700px) { .about-cols { grid-template-columns: 1fr; gap: 2rem; } }
+    .about-text { font-size: 1.08rem; line-height: 1.85; color: var(--ink2); }
+    .about-text strong { color: var(--ink); font-weight: 600; }
+    .about-aside {}
+    .aside-block { margin-bottom: 1.5rem; }
+    .aside-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink3); margin-bottom: 0.3rem; }
+    .aside-val { font-size: 0.9rem; color: var(--ink); font-weight: 500; }
+
+    /* ── BTS ── */
+    .bts-intro { font-size: 1rem; color: var(--ink2); max-width: 600px; margin-bottom: 3rem; line-height: 1.75; }
+    .bts-table { width: 100%; border-collapse: collapse; }
+    .bts-table th {
+      text-align: left;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink3);
+      font-weight: 500;
+      padding: 0 1rem 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .bts-table td {
+      padding: 1rem 1rem 1rem 0;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      font-size: 0.9rem;
+      color: var(--ink2);
+    }
+    .bts-table td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+    .bts-table tr:last-child td { border-bottom: none; }
+    .bts-table tr:hover td { background: var(--bg2); }
+
+    /* ── PARCOURS ── */
+    .parcours-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+    @media (max-width: 700px) { .parcours-cols { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .parcours-head { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--ink3); margin-bottom: 1.5rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+    .parcours-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 1.2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .parcours-row:last-child { border-bottom: none; }
+    .p-year { font-family: var(--serif); font-size: 0.85rem; font-style: italic; color: var(--ink3); padding-top: 0.1rem; }
+    .p-title { font-size: 0.93rem; font-weight: 600; color: var(--ink); }
+    .p-sub   { font-size: 0.82rem; color: var(--ink3); margin-top: 0.1rem; }
+
+    /* Skills — liste typographique */
+    .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
+    .skill-item {
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ink2);
+      letter-spacing: 0.03em;
+      background: var(--bg2);
+    }
+
+    /* ── ENTREPRISE ── */
+    .ent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .ent-cell {
+      padding: 2.2rem 2rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .ent-cell:nth-child(2n) { border-right: none; }
+    .ent-cell:nth-last-child(-n+2) { border-bottom: none; }
+    @media (max-width: 640px) {
+      .ent-grid { grid-template-columns: 1fr; }
+      .ent-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .ent-cell:last-child { border-bottom: none; }
+    }
+    .ent-cell-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--red); margin-bottom: 0.8rem; }
+    .ent-cell-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--ink); margin-bottom: 0.6rem; }
+    .ent-cell p, .ent-cell li { font-size: 0.88rem; color: var(--ink2); line-height: 1.65; }
+    .ent-cell ul { padding-left: 1rem; list-style: disc; display: flex; flex-direction: column; gap: 0.2rem; }
+
+    /* ── CERTIFICATIONS ── */
+    .certs-list { display: flex; flex-direction: column; }
+    .cert-row {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr auto;
+      align-items: center;
+      gap: 1.4rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cert-row:last-child { border-bottom: none; }
+    .cert-index { font-family: var(--serif); font-size: 1.6rem; font-style: italic; color: var(--border); line-height: 1; }
+    .cert-name { font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+    .cert-detail { font-size: 0.82rem; color: var(--ink3); margin-top: 0.15rem; }
+    .cert-badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border: 1px solid var(--border);
+      color: var(--ink3);
+      white-space: nowrap;
+    }
+    .cert-badge.en-cours { border-color: var(--red); color: var(--red); }
+
+    /* ── PROJETS ── */
+    .projets-notice {
+      background: var(--bg2);
+      border-left: 3px solid var(--ink3);
+      padding: 1rem 1.4rem;
+      font-size: 0.85rem;
+      color: var(--ink3);
+      margin-bottom: 2.5rem;
+    }
+    .projets-list { display: flex; flex-direction: column; gap: 0; }
+    .projet-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .projet-row:last-child { border-bottom: none; }
+    .proj-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+    .proj-desc  { font-size: 0.88rem; color: var(--ink2); line-height: 1.65; }
+    .proj-tags  { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+    .proj-tag   { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.2rem 0.6rem; border: 1px solid var(--border); color: var(--ink3); }
+    .proj-link  { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--red); text-decoration: none; white-space: nowrap; border-bottom: 1px solid var(--red); padding-bottom: 0.1rem; }
+    .proj-link:hover { opacity: 0.7; }
+
+    /* ── VEILLE ── */
+    .veille-zone {
+      background: var(--bg2);
+      padding: 4rem 3rem;
+      text-align: center;
+      border: 1px dashed var(--border);
+    }
+    .veille-zone p { font-size: 0.9rem; color: var(--ink3); margin-top: 0.6rem; }
+    .veille-zone .v-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--ink); }
+
+    /* ── SYNTHÈSE ── */
+    .synth-band {
+      background: var(--ink);
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .synth-band h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--bg); }
+    .synth-band p  { font-size: 0.85rem; color: var(--ink3); margin-top: 0.3rem; max-width: 420px; }
+    .btn-inv {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.65rem 1.4rem;
+      background: var(--red);
+      color: #fff;
+      font-size: 0.83rem; font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: opacity 0.2s;
+    }
+    .btn-inv:hover { opacity: 0.85; }
+
+    /* ── CONTACT ── */
+    .contact-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .contact-cell {
+      padding: 2rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s;
+    }
+    .contact-cell:nth-child(2n)      { border-right: none; }
+    .contact-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .contact-cell:hover { background: var(--bg2); }
+    @media (max-width: 560px) {
+      .contact-cols { grid-template-columns: 1fr; }
+      .contact-cell { border-right: none; }
+      .contact-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .contact-cell:last-child { border-bottom: none; }
+    }
+    .cc-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink3); margin-bottom: 0.35rem; }
+    .cc-val   { font-size: 1rem; font-weight: 500; color: var(--ink); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--ink3);
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* ── FADE ── */
+    .fade { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade.in { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <a href="#hero" class="tb-logo">Portfolio BTS SIO</a>
+    <ul class="tb-nav">
+      <li><a href="#hero"           class="active">Accueil</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#bts">BTS SIO</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#entreprise">Entreprise</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#patrimoine">Patrimoine</a></li>
+      <li><a href="#veille">Veille</a></li>
+      <li><a href="#synthese">Synthèse</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="tb-right">
+      <span class="tb-dot"></span>
+      <span class="tb-status">En alternance</span>
+    </div>
+    <button class="mob-toggle" id="mobToggle" aria-label="Menu">☰</button>
+  </header>
+
+  <nav class="mob-menu" id="mobMenu">
+    <a href="#hero"           onclick="closeMob()">Accueil</a>
+    <a href="#about"          onclick="closeMob()">À propos</a>
+    <a href="#bts"            onclick="closeMob()">BTS SIO</a>
+    <a href="#parcours"       onclick="closeMob()">Parcours</a>
+    <a href="#entreprise"     onclick="closeMob()">Entreprise</a>
+    <a href="#certifications" onclick="closeMob()">Certifications</a>
+    <a href="#projets"        onclick="closeMob()">Projets</a>
+    <a href="#patrimoine"     onclick="closeMob()">Patrimoine informatique</a>
+    <a href="#veille"         onclick="closeMob()">Veille</a>
+    <a href="#synthese"       onclick="closeMob()">Synthèse</a>
+    <a href="#contact"        onclick="closeMob()">Contact</a>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section id="hero">
+    <div class="hero-main fade">
+      <div class="hero-eyebrow">BTS SIO — Option SISR · 2025–2027</div>
+      <h1 class="hero-name">
+        <!-- Remplace par ton prénom et nom -->
+        Lucas<br>SELLIER
+      </h1>
+    </div>
+    <div class="hero-bottom fade">
+      <p class="hero-desc">
+        <!-- Ta description personnelle courte -->
+        Étudiant en alternance passionné par les infrastructures systèmes et réseaux. Rigoureux et curieux, je construis mes compétences sur le terrain.
+      </p>
+      <div class="hero-btns">
+        <a href="#projets" class="btn-solid">Voir mes projets</a>
+        <a href="#contact"  class="btn-bare">Me contacter</a>
+      </div>
+    </div>
+    <!-- Section info perso enlever-->
+  </section>
+
+  <!-- ══ À PROPOS ══ -->
+  <section id="about" class="section">
+    <div class="section-inner fade">
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title">À propos</h2>
+      </div>
+      <div class="about-cols">
+        <p class="about-text">
+          <!-- Ta présentation personnelle complète -->
+          Je m'appelle <strong>Prénom Nom</strong>, j'ai <strong>XX ans</strong> et je prépare un <strong>BTS SIO option SISR</strong> à [Ton école], en alternance chez [Ton entreprise]. Passionné par l'informatique depuis [ta raison ou depuis l'enfance], j'ai naturellement orienté mon parcours vers l'administration des réseaux et des systèmes. Ce domaine m'attire parce que [ta motivation personnelle].
+        </p>
+        <div class="about-aside">
+          <div class="aside-block">
+            <div class="aside-label">Formation</div>
+            <div class="aside-val">BTS SIO option SISR</div>
+          </div>
+          <div class="aside-block">
+            <div class="aside-label">Alternance</div>
+            <div class="aside-val">SNCF</div>
+          </div>
+          <div class="aside-block">
+            <div class="aside-label">École</div>
+            <div class="aside-val">H3 Hitema</div>
+          </div>
+          <div class="aside-block">
+            <div class="aside-label">Localisation</div>
+            <div class="aside-val">Maisons-Alfort, France</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BTS SIO ══ -->
+  <section id="bts" class="section">
+    <div class="section-inner fade">
+      <div class="sec-head">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title">BTS SIO</h2>
+      </div>
+      <p class="bts-intro">
+        Le BTS Services Informatiques aux Organisations forme aux métiers de l'informatique en entreprise. Il existe deux options : SISR (systèmes et réseaux) et SLAM (développement). J'ai choisi l'option SISR pour [ta raison].
+      </p>
+      <table class="bts-table">
+        <thead>
+          <tr>
+            <th>Domaine</th>
+            <th>Contenu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Option SISR</td>
+            <td>Solutions d'Infrastructure, Systèmes et Réseaux — administration des réseaux, sécurisation des infrastructures, gestion des systèmes d'exploitation.</td>
+          </tr>
+          <tr>
+            <td>Administration Systèmes</td>
+            <td>Installation et configuration de serveurs Windows Server et Linux, gestion des utilisateurs, des droits et des stratégies de groupe.</td>
+          </tr>
+          <tr>
+            <td>Réseaux & Sécurité</td>
+            <td>Configuration de routeurs et commutateurs Cisco, VLAN, protocoles TCP/IP, pare-feux, détection des vulnérabilités.</td>
+          </tr>
+          <tr>
+            <td>Support & Maintenance</td>
+            <td>Gestion du parc informatique, assistance technique aux utilisateurs, déploiement et suivi des équipements.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══ PARCOURS ══ -->
+  <section id="parcours" class="section">
+    <div class="section-inner fade">
+      <div class="sec-head">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title">Parcours</h2>
+      </div>
+      <div class="parcours-cols">
+
+        <div>
+          <div class="parcours-head">Cursus scolaire</div>
+          <div class="parcours-row">
+            <div class="p-year">2025–2027</div>
+            <div>
+              <div class="p-title">BTS SIO option SISR</div>
+              <div class="p-sub">H3 Hitema — Paris</div>
+            </div>
+          </div>
+          <div class="parcours-row">
+            <div class="p-year">2023–2024</div>
+            <div>
+              <div class="p-title">Baccalauréat Général - Spécialité : Numérique et Science Informatiques & Sciences Economique et Sociale</div>
+              <div class="p-sub">Louis Bascan — Rambouillet</div>
+            </div>
+          </div>
+          <div class="parcours-row">
+            <div class="p-year">2020–2021</div>
+            <div>
+              <div class="p-title">Brevet des Collèges</div>
+              <div class="p-sub">Georges Brassens — Saint Arnoult en Yveline</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="parcours-head">Projet professionnel & compétences</div>
+          <p style="font-size:.9rem;color:var(--ink2);line-height:1.75;margin-bottom:1.2rem">
+            <!-- Tes ambitions : poste visé, spécialisation, poursuites d'études -->
+            À terme, je souhaite évoluer vers un poste de [poste visé], en approfondissant mes compétences en [domaine]. Après le BTS, j'envisage [poursuites d'études ou insertion directe].
+          </p>
+          <div class="parcours-head" style="margin-top:1.2rem">Technologies et outils étudiés en formation et en entreprise.</div>
+          <div class="skills-list">
+            <span class="skill-item">Windows Server</span>
+            <span class="skill-item">Linux</span>
+            <span class="skill-item">Cisco IOS</span>
+            <span class="skill-item">Packet Tracer</span>
+            <span class="skill-item">Power BI</span>
+            <span class="skill-item">Power Apps</span>
+            <span class="skill-item">Power Automate</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ENTREPRISE ══ -->
+  <section id="entreprise" class="section">
+    <div class="section-inner fade">
+      <div class="sec-head">
+        <span class="sec-num">04</span>
+        <h2 class="sec-title">Société Nationale des Chemins de Fer (SNCF)</h2>
+      </div>
+    </div>
+    <div class="ent-grid">
+      <div class="ent-cell">
+        <div class="ent-cell-label">À propos</div>
+        <div class="ent-cell-title">SNCF</div>
+        <p>
+          <!-- Présentation de l'entreprise : secteur, activité principale, localisation, taille -->
+          Décris ici l'entreprise en 2-3 phrases : ce qu'elle fait, ses clients, son positionnement.
+        </p>
+      </div>
+      <div class="ent-cell">
+        <div class="ent-cell-label">Mon rôle</div>
+        <div class="ent-cell-title">Technicien informatique</div>
+        <p>
+          <!-- Ton intitulé de poste et tes responsabilités principales -->
+          Décris ton rôle en alternance : intitulé du poste et responsabilités globales.
+        </p>
+      </div>
+      <div class="ent-cell" style="grid-column: 1 / -1; border-right: none;">
+        <div class="ent-cell-label">Mes missions</div>
+        <ul>
+          <li>Mission 1 — description courte</li>
+          <li>Mission 2 — description courte</li>
+          <li>Mission 3 — description courte</li>
+          <li>Mission 4 — description courte</li>
+          <li>Mission 5 — description courte</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CERTIFICATIONS ══ -->
+  <section id="certifications" class="section">
+    <div class="section-inner fade">
+      <div class="sec-head">
+        <span class="sec-num">05</span>
+        <h2 class="sec-title">Certifications & Diplôme</h2>
+      </div>
+      <div class="certs-list">
+        <div class="cert-row">
+          <div class="cert-index">I</div>
+          <div>
+            <div class="cert-name">Baccalauréat Général</div>
+            <div class="cert-detail">Spécialité : NSI & SES · Lycée louis Bascan - Rambouillet· 2024</div>
+          </div>
+          <div class="cert-badge">Obtenu</div>
+        </div>
+        <div class="cert-row">
+          <div class="cert-index">II</div>
+          <div>
+            <div class="cert-name">Certification — Introduction à la cybersécurité - Cisco Networking Academy</div>
+            <div class="cert-detail">Ce cours d'introduction vous emmène dans le monde de la cybersécurité. Vous apprendrez les bases de la cybersécurité pour protéger votre vie numérique personnelle et aurez un aperçu des plus grands défis de sécurité auxquels les entreprises, les gouvernements et les établissements d'enseignement sont confrontés aujourd'hui. Les professionnels de la cybersécurité capables de protéger et de défendre le réseau d'une organisation sont très demandés.</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.8rem">
+            <a href="Documents/_certificate_mikimikmer-gmail-com_8714e377-fa19-4dcf-9220-f89d438d8089.pdf" target="_blank" class="proj-link">Voir la certifications</a>
+            <div class="cert-badge">Obtenu</div>
+          </div>
+        </div>
+        <div class="cert-row">
+          <div class="cert-index">III</div>
+          <div>
+            <div class="cert-name">Certification — Notions de base sur les réseaux - Cisco Networking Academy</div>
+            <div class="cert-detail">Ce cours couvre les bases de la mise en réseau et des périphériques, supports et protocoles réseau. Vous observerez les données circulant dans un réseau et configurerez les périphériques pour les connecter aux réseaux. Enfin, vous apprendrez à utiliser différentes applications et protocoles réseau pour accomplir des tâches de mise en réseau. Les connaissances et les compétences que vous allez acquérir peuvent vous donner un point de départ pour trouver une carrière enrichissante dans le domaine de la technologie.</div>
+          </div>
+          <div class="cert-badge en-cours">En cours</div>
+        </div>
+        <div class="cert-row">
+          <div class="cert-index">IV</div>
+          <div>
+            <div class="cert-name">Certification —  PIX</div>
+            <div class="cert-detail">Text</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.8rem">
+            <a href="Documents/certification-pix-20240227.pdf" target="_blank" class="proj-link">Voir la certifications</a>
+            <div class="cert-badge">Obtenu</div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROJETS PPE ══ -->
+  <section id="projets" class="section">
+    <div class="section-inner fade">
+      <div class="sec-head">
+        <span class="sec-num">06</span>
+        <h2 class="sec-title">Projets Personnalisés Encadrés</h2>
+      </div>
+      <div class="projets-notice">
+        Les PPE (Projets Personnalisés Encadrés) sont des projets réalisés en formation et en entreprise. Cette section sera complétée progressivement.
+      </div>
+      <div class="projets-list">
+        <div class="projet-row">
+          <div>
+            <div class="proj-title">PPE 1 — [Titre du projet]</div>
+            <div class="proj-desc">
+              <!-- Décris le projet : contexte, ce que tu devais faire, comment tu l'as résolu -->
+              Description du projet, objectifs, démarche et résultats obtenus. Ajoute une ou deux captures d'écran si possible.
+            </div>
+            <div class="proj-tags">
+              <span class="proj-tag"><!-- Techno ex: Linux --></span>
+              <span class="proj-tag"><!-- Techno ex: Apache --></span>
+              <span class="proj-tag">1ère année</span>
+            </div>
+          </div>
+          <a href="https://github.com/ton-pseudo/nom-repo" target="_blank" class="proj-link">GitHub →</a>
+        </div>
+        <div class="projet-row">
+          <div>
+            <div class="proj-title">PPE 2 — [Titre du projet]</div>
+            <div class="proj-desc">
+              Description du projet, objectifs, démarche et résultats obtenus.
+            </div>
+            <div class="proj-tags">
+              <span class="proj-tag"><!-- Techno --></span>
+              <span class="proj-tag"><!-- Techno --></span>
+              <span class="proj-tag">2ème année</span>
+            </div>
+          </div>
+          <a href="https://github.com/ton-pseudo/nom-repo" target="_blank" class="proj-link">GitHub →</a>
+        </div>
+        <div class="projet-row">
+          <div>
+            <div class="proj-title">Situations professionnelles — E6</div>
+            <div class="proj-desc">Fiches détaillées de toutes les situations professionnelles réalisées en formation et en entreprise dans le cadre de l'épreuve E6.</div>
+            <div class="proj-tags">
+              <span class="proj-tag">BTS SIO SISR</span>
+            </div>
+          </div>
+          <a href="E6.html" class="proj-link">Voir les fiches →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PATRIMOINE INFORMATIQUE ══ -->
+  <section id="patrimoine" class="section">
+    <div class="section-inner fade">
+      <div class="sec-head">
+        <span class="sec-num">07</span>
+        <h2 class="sec-title">Gestion du patrimoine informatique</h2>
+      </div>
+      <p style="font-size:.95rem;color:var(--ink2);max-width:600px;margin-bottom:2.5rem;line-height:1.75">
+        La gestion du patrimoine informatique regroupe toutes les activités liées à l'administration, la maintenance, la sécurisation et l'optimisation du parc informatique d'une organisation.
+      </p>
+      <table class="bts-table">
+        <thead>
+          <tr>
+            <th>Domaine</th>
+            <th>Expériences & concepts maîtrisés</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Maintenance</td>
+            <td>
+              <!-- Décris tes expériences : dépannage matériel/logiciel, mises à jour, sauvegardes... -->
+              Dépannage matériel et logiciel, mises à jour systèmes, gestion des sauvegardes.
+            </td>
+          </tr>
+          <tr>
+            <td>Sécurisation</td>
+            <td>
+              <!-- Pare-feux, antivirus, GPO, gestion des droits... -->
+              Mise en place de pare-feux, gestion des droits d'accès, stratégies de groupe (GPO), sensibilisation des utilisateurs.
+            </td>
+          </tr>
+          <tr>
+            <td>Inventaire & suivi</td>
+            <td>
+              <!-- GLPI, tableur, logiciel de gestion de parc... -->
+              Recensement et suivi du parc informatique, utilisation d'outils de gestion (GLPI, tableur...).
+            </td>
+          </tr>
+          <tr>
+            <td>Audits</td>
+            <td>
+              <!-- Audits de sécurité, vérifications de conformité... -->
+              Vérification de la conformité des configurations, identification des vulnérabilités.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══ VEILLE ══ -->
+  <section id="veille" class="section">
+    <div class="section-inner fade">
+      <div class="sec-head">
+        <span class="sec-num">08</span>
+        <h2 class="sec-title">Veille technologique</h2>
+      </div>
+      <div class="about-cols" style="margin-bottom:2rem">
+        <div>
+          <p style="font-size:.95rem;color:var(--ink2);line-height:1.8;margin-bottom:1.2rem">
+            <!-- Décris ton sujet de veille et pourquoi tu l'as choisi -->
+            <strong style="color:var(--ink)">Sujet de veille :</strong> [Ex: La cybersécurité des infrastructures réseau / L'évolution des solutions cloud / ...]. J'ai choisi ce sujet car [ta raison].
+          </p>
+          <p style="font-size:.95rem;color:var(--ink2);line-height:1.8">
+            <!-- Impact des évolutions sur ton domaine -->
+            <strong style="color:var(--ink)">Impact sur le métier :</strong> [Explique en quoi les évolutions dans ce domaine changent les pratiques en SISR — nouvelles menaces, nouveaux outils, nouvelles compétences requises...].
+          </p>
+        </div>
+        <div class="about-aside">
+          <div class="aside-block">
+            <div class="aside-label">Outils utilisés</div>
+            <div class="aside-val" style="font-size:.85rem;line-height:1.9">
+              Google Alerts<br>
+              LinkedIn<br>
+              <!-- Ajoute tes autres outils : Twitter/X, Reddit, newsletters... -->
+              
+            </div>
+          </div>
+          <div class="aside-block">
+            <div class="aside-label">Sources suivies</div>
+            <div class="aside-val" style="font-size:.85rem;line-height:1.9">
+              <!-- Ex: ANSSI, Le Monde Informatique, Korben... -->
+              [Source 1]<br>
+              [Source 2]<br>
+              [Source 3]
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="veille-zone">
+        <div class="v-title">Synthèse à compléter</div>
+        <p>Ajoute ici tes articles de veille, résumés et analyses au fil de l'année.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SYNTHÈSE ══ -->
+  <section id="synthese" class="section">
+    <div class="section-inner fade">
+      <div class="sec-head">
+        <span class="sec-num">09</span>
+        <h2 class="sec-title">Tableau de synthèse</h2>
+      </div>
+    </div>
+    <div class="synth-band">
+      <div>
+        <h3>Synthèse des compétences professionnelles</h3>
+        <p>Ensemble des compétences acquises et mises en pratique durant les deux années de BTS SIO SISR.</p>
+      </div>
+      <a href="Documents/Epreuve-E5-Tableau_de_synthese.pdf" class="btn-inv">Télécharger le tableau →</a>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section id="contact" class="section">
+    <div class="section-inner fade">
+      <div class="sec-head">
+        <span class="sec-num">10</span>
+        <h2 class="sec-title">Contact</h2>
+      </div>
+      <p style="font-size:.95rem;color:var(--ink2);margin-bottom:2.5rem;max-width:480px">
+        N'hésitez pas à me contacter pour toute question ou opportunité professionnelle.
+      </p>
+    </div>
+    <div class="contact-cols">
+      <a href="mailto:ton.email@exemple.com" class="contact-cell">
+        <div class="cc-label">Email</div>
+        <div class="cc-val">lucas.sellier.426@gmail.com</div>
+      </a>
+      <a href="https://www.linkedin.com/in/lucas-sellier-8686b5319/" target="_blank" class="contact-cell">
+        <div class="cc-label">LinkedIn</div>
+        <div class="cc-val">linkedin.com/in/lucas-sellier</div>
+      </a>
+      <a href="Cv Alternance Lucas Sellier H3.pdf" class="contact-cell">
+        <div class="cc-label">Curriculum Vitae</div>
+        <div class="cc-val">Télécharger mon CV</div>
+      </a>
+      <a href="https://www.h3hitema.fr/" target="_blank" class="contact-cell">
+        <div class="cc-label">École</div>
+        <div class="cc-val">H3 Hitema — Paris</div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Lucas SELLIER — Portfolio BTS SIO SISR</span>
+    <span>H3 Hitema</span>
+  </footer>
+
+</div>
+
+<script>
+  // Mobile menu
+  const mobToggle = document.getElementById('mobToggle');
+  const mobMenu   = document.getElementById('mobMenu');
+  mobToggle.addEventListener('click', () => mobMenu.classList.toggle('open'));
+  function closeMob() { mobMenu.classList.remove('open'); }
+
+  // Fade scroll
+  const io = new IntersectionObserver(e => {
+    e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  // Lien actif dans la topbar
+  const secs  = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.tb-nav a');
+  const obs = new IntersectionObserver(e => {
+    e.forEach(x => {
+      if (x.isIntersecting) {
+        links.forEach(a => a.classList.remove('active'));
+        const a = document.querySelector('.tb-nav a[href="#' + x.target.id + '"]');
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-35% 0px -60% 0px' });
+  secs.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
