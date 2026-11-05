@@ -793,17 +793,22 @@
         <span class="sec-num">07</span>
         <h2 class="sec-title">Veille technologique</h2>
       </div>
-      <div class="about-cols" style="margin-bottom:2rem">
+ 
+      <h3 style="font-size:1.4rem;color:var(--ink);border-left:4px solid #c74b4b;padding-left:12px;margin-bottom:.6rem">L'intelligence artificielle dans la cybersécurité</h3>
+      <p class="veille-q">Problématique : l'IA renforce-t-elle la protection des systèmes d'information, ou crée-t-elle de nouveaux risques ?</p>
+ 
+      <!-- Sujet, méthode et outils -->
+      <div class="about-cols" style="margin-bottom:3rem">
         <div>
-
-          
-          <h3 style="font-size:1.4rem;color:var(--ink);border-left:4px solid #c74b4b;padding-left:12px;margin-bottom:1rem"> L'intelligence artificielle dans la cybersécurité. </h3>
-          <p style="font-size:.95rem;color:var(--ink2);line-height:1.8;margin-bottom:1.2rem">J'ai choisi ce sujet car l'intelligence artificielle est de plus en plus utilisée pour détecter les cyberattaques, analyser les menaces et renforcer la sécurité des systèmes informatiques. Ce domaine évolue rapidement et impacte directement les métiers de l'informatique et de la cybersécurité.</p>
+          <p style="font-size:.95rem;color:var(--ink2);line-height:1.8;margin-bottom:1.4rem">
+            <strong style="color:var(--ink)">Pourquoi ce sujet :</strong> l'intelligence artificielle est de plus en plus utilisée pour détecter les cyberattaques, analyser les menaces et renforcer la sécurité des systèmes informatiques. Ce domaine évolue rapidement et impacte directement les métiers de l'informatique et de la cybersécurité.
           </p>
-          <p style="font-size:.95rem;color:var(--ink2);line-height:1.8">
-            <!-- Impact des évolutions sur ton domaine -->
-            <strong style="color:var(--ink)">Impact sur le métier :</strong> L'intelligence artificielle transforme le métier d'administrateur systèmes et réseaux en permettant une détection plus rapide des menaces et une automatisation de certaines tâches de sécurité. Cependant, les cybercriminels utilisent également l'IA pour créer des attaques plus sophistiquées, ce qui oblige les professionnels à développer de nouvelles compétences en cybersécurité et à maîtriser de nouveaux outils de protection.
-          </p>
+          <div class="veille-method">
+            <div class="parcours-head">Ma méthode de veille</div>
+            <p><strong>1. Collecte —</strong> alertes Google Alerts sur mes mots-clés, publications de l'ANSSI, fil LinkedIn.</p>
+            <p><strong>2. Tri —</strong> je privilégie les sources officielles, je croise les articles de presse avec les faits annoncés et je vérifie la date et l'auteur avant de retenir une information.</p>
+            <p><strong>3. Synthèse —</strong> je résume chaque publication retenue dans le tableau ci-dessous et j'en tire l'impact sur mon métier.</p>
+          </div>
         </div>
         <div class="about-aside">
           <div class="aside-block">
@@ -811,21 +816,116 @@
             <div class="aside-val" style="font-size:.85rem;line-height:1.9">
               Google Alerts<br>
               LinkedIn<br>
-              ANSSI
+              Site de l'ANSSI
             </div>
           </div>
           <div class="aside-block">
             <div class="aside-label">Sources suivies</div>
             <div class="aside-val" style="font-size:.85rem;line-height:1.9">
-              <!-- Ex: ANSSI, Le Monde Informatique, Korben... -->
-              ANSSI<br>
+              ANSSI et CERT-FR<br>
+              Presse spécialisée et généraliste, reçue via Google Alerts<br>
+              Publications LinkedIn spécialisées en cybersécurité
+            </div>
+          </div>
+          <div class="aside-block">
+            <div class="aside-label">Mots-clés des alertes</div>
+            <div class="aside-val" style="font-size:.85rem;line-height:1.9">
+              Intelligence artificielle<br>
+              cybersécurité France<br>
+              IA cybersécurité
             </div>
           </div>
         </div>
       </div>
-      <div class="veille-zone">
-        <div class="v-title">Synthèse à compléter</div>
-        <p>Ajout des articles de veille à venir</p>
+ 
+      <!-- Ce que montre la veille -->
+      <div class="parcours-head">Ce que montre ma veille</div>
+      <div class="veille-grid">
+        <div class="veille-cell">
+          <div class="veille-cell-label">Côté attaquants</div>
+          <div class="veille-cell-title">Un outil qui accélère les attaques</div>
+          <p>Selon l'ANSSI, l'IA générative est détournée à plusieurs étapes d'une attaque : profilage des victimes, ingénierie sociale et développement de programmes malveillants. CrowdStrike relève une hausse de 89 % des opérations d'adversaires assistés par l'IA. L'ANSSI nuance toutefois : en février 2026, aucun système d'IA générative n'avait mené seul toutes les étapes d'une attaque.</p>
+        </div>
+        <div class="veille-cell">
+          <div class="veille-cell-label">Côté défenseurs</div>
+          <div class="veille-cell-title">Une aide à la détection et à la réponse</div>
+          <p>L'IA est aussi un outil de défense. En novembre 2026, Orange Cyberdefense a obtenu l'accès anticipé à une version spécialisée du modèle Large 4 de Mistral AI pour ses tests d'intrusion, ses audits et l'investigation après incident, avec des contrôles humains pour les actions sensibles. Ces usages restent des annonces : aucun calendrier de déploiement n'est communiqué.</p>
+        </div>
+        <div class="veille-cell">
+          <div class="veille-cell-label">Un nouveau périmètre</div>
+          <div class="veille-cell-title">L'IA elle-même doit être protégée</div>
+          <p>Les systèmes d'IA deviennent des cibles : CrowdStrike a observé des prompts malveillants injectés dans des outils d'IA générative légitimes dans plus de 90 organisations, et l'ANSSI cite l'empoisonnement de modèles et l'exfiltration de données. En avril 2026, le CERT-FR a déconseillé les agents IA autonomes sur les postes de travail, puis l'ANSSI a publié des principes pour encadrer ces agents. À l'automne 2026, OpenAI a reconnu que ses agents avaient interagi avec des sites gouvernementaux lors d'entraînements internes, et environ 225 chercheurs ont demandé un meilleur confinement des modèles.</p>
+        </div>
+      </div>
+ 
+      <!-- Tableau des publications -->
+      <div class="parcours-head">Publications retenues</div>
+      <div class="table-wrap">
+        <table class="bts-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Source</th>
+              <th>Ce que je retiens</th>
+              <th>Lien</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01/11/2026</td>
+              <td>Le Monde Informatique<br><span style="font-weight:400;color:var(--ink3);font-size:.8rem">presse spécialisée</span></td>
+              <td><strong style="color:var(--ink)">Orange Cyberdefense et Mistral AI.</strong> Dans le cadre du programme « Design Partner » de Mistral AI (modèle Large 4), Orange Cyberdefense obtient un accès anticipé à une variante spécialisée pour des services de sécurité managés : d'abord tests d'intrusion et audits techniques, puis investigation après incident. Des contrôles humains sont prévus pour les actions sensibles, et les modèles doivent tourner sur une infrastructure en Europe. Aucune date de lancement n'est annoncée.</td>
+              <td><a href="https://www.lemondeinformatique.fr/actualites/lire-mistral-ai-ouvre-a-orange-cyberdefense-l-acces-anticipe-a-une-version-specialisee-de-large-4-100890.html" target="_blank" class="proj-link">Lire →</a></td>
+            </tr>
+            <tr>
+              <td>30/10/2026</td>
+              <td>ANSSI<br><span style="font-weight:400;color:var(--ink3);font-size:.8rem">relayé par armees.com</span></td>
+              <td><strong style="color:var(--ink)">Sécurité des agents IA.</strong> L'ANSSI publie des recommandations pour les organisations qui déploient des agents capables d'agir seuls : droits vérifiés indépendamment du modèle avec refus par défaut, validation humaine pour les actions critiques, cloisonnement des environnements, journaux protégés et arrêt d'urgence.</td>
+              <td><a href="https://armees.com/anssi-sept-principes-securite-ia-agentique-31-octobre-2026-1232/" target="_blank" class="proj-link">Lire →</a></td>
+            </tr>
+            <tr>
+              <td>13/10/2026</td>
+              <td>Le Petit Journal (AFP)<br><span style="font-weight:400;color:var(--ink3);font-size:.8rem">dépêche de presse</span></td>
+              <td><strong style="color:var(--ink)">Environ 225 chercheurs de 21 pays, dont Yoshua Bengio, réclament des « changements immédiats ».</strong> Leur lettre ouverte cite des IA d'OpenAI, d'Anthropic et de Meta qui seraient sorties de leur environnement de test pour pirater des organisations externes (l'incident le plus grave impliquerait Hugging Face). Ils demandent un meilleur confinement des modèles dotés de capacités cyber et un organisme international qui rende publics les incidents majeurs.</td>
+              <td><a href="https://lepetitjournal.com/expat-emploi/ia-225-chercheurs-reclament-des-changements-immediats-pour-prevenir-des-incidents-majeurs-456039" target="_blank" class="proj-link">Lire →</a></td>
+            </tr>
+            <tr>
+              <td>25/09/2026</td>
+              <td>Nextgov<br><span style="font-weight:400;color:var(--ink3);font-size:.8rem">média américain spécialisé</span></td>
+              <td><strong style="color:var(--ink)">OpenAI reconnaît que ses agents ont interagi avec des sites gouvernementaux américains.</strong> Lors de tâches d'entraînement internes, des agents ont utilisé des clés de développeur trouvées dans des dépôts GitHub publics pour lire des données publiques du Census Bureau, et ont récupéré puis republié des informations accessibles sur les sites de la SEC. OpenAI affirme qu'aucune donnée non publique n'a été touchée, a prévenu les organismes concernés et poursuit un examen de plusieurs mois. Rappel utile : ne jamais laisser de clés d'accès dans un dépôt public.</td>
+              <td><a href="https://www.nextgov.com/cybersecurity/2026/09/openai-says-its-advanced-models-may-have-gone-after-government-websites/416250/" target="_blank" class="proj-link">Lire →</a></td>
+            </tr>
+            <tr>
+              <td>13/04/2026</td>
+              <td>CERT-FR (ANSSI)<br><span style="font-weight:400;color:var(--ink3);font-size:.8rem">bulletin CERTFR-2026-ACT-016</span></td>
+              <td><strong style="color:var(--ink)">Agents IA autonomes sur les postes de travail.</strong> Le CERT-FR déconseille de déployer en production ces assistants (le bulletin cite plusieurs produits, dont OpenClaw). Risques : compromission du poste, fuite de données, droits d'accès excessifs, exposition des secrets, actions destructrices. Usage toléré uniquement dans un environnement de test isolé, sans donnée sensible, avec droits restreints et validation humaine des actions critiques.</td>
+              <td><a href="https://www.cert.ssi.gouv.fr/actualite/CERTFR-2026-ACT-016/" target="_blank" class="proj-link">Lire →</a></td>
+            </tr>
+            <tr>
+              <td>24/02/2026</td>
+              <td>CrowdStrike<br><span style="font-weight:400;color:var(--ink3);font-size:.8rem">éditeur de solutions de sécurité</span></td>
+              <td><strong style="color:var(--ink)">2026 Global Threat Report : l'IA accélère les attaquants et élargit la surface d'attaque.</strong> Les adversaires assistés par l'IA ont augmenté leurs opérations de 89 % en un an. Le « breakout time » moyen de la cybercriminalité (temps pour se propager après l'accès initial) est tombé à 29 minutes. Des prompts malveillants ont aussi été injectés dans des outils d'IA générative légitimes dans plus de 90 organisations. Source d'éditeur : à lire avec recul, car CrowdStrike vend aussi des solutions de sécurité.</td>
+              <td><a href="https://www.crowdstrike.com/en-us/press-releases/2026-crowdstrike-global-threat-report/" target="_blank" class="proj-link">Lire →</a></td>
+            </tr>
+            <tr>
+              <td>04/02/2026</td>
+              <td>ANSSI / CERT-FR</td>
+              <td><strong style="color:var(--ink)">Synthèse de la menace sur l'IA générative face aux attaques informatiques</strong> (CERTFR-2026-CTI-001). L'IA est utilisée pour le profilage, l'ingénierie sociale et le développement de malwares, mais aucun système n'a mené seul toutes les étapes d'une attaque. Les modèles peuvent aussi être ciblés (empoisonnement, exfiltration de données). La menace doit être réévaluée régulièrement.</td>
+              <td><a href="https://cyber.gouv.fr/actualites/synthese-de-la-menace-sur-lia-generative-face-aux-attaques-informatiques/" target="_blank" class="proj-link">Lire →</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+ 
+      <!-- Impact sur le métier -->
+      <div class="parcours-head">Impact sur le métier d'administrateur systèmes et réseaux</div>
+      <div style="max-width:760px">
+        <p style="font-size:.95rem;color:var(--ink2);line-height:1.8;margin-bottom:1rem">
+          L'intelligence artificielle transforme le métier d'administrateur systèmes et réseaux en permettant une détection plus rapide des menaces et une automatisation de certaines tâches de sécurité. Cependant, les cybercriminels utilisent également l'IA pour créer des attaques plus sophistiquées, ce qui oblige les professionnels à développer de nouvelles compétences en cybersécurité et à maîtriser de nouveaux outils de protection.
+        </p>
+        <p style="font-size:.95rem;color:var(--ink2);line-height:1.8">
+          Concrètement, cela renforce l'importance de principes que je mets déjà en pratique : gérer les droits au plus juste (permissions POSIX, profils dans GLPI), journaliser les actions, sensibiliser les utilisateurs aux messages frauduleux et garder un regard critique sur les outils automatisés, dont les actions doivent rester contrôlées par un humain. Dans mon quotidien (configuration et dépannage des postes, tablettes et téléphones), cela rejoint la recommandation du CERT-FR de limiter les droits et les données accessibles aux outils automatisés.
+        </p>
       </div>
     </div>
   </section>
