@@ -788,6 +788,31 @@
 
   <!-- ══ VEILLE ══ -->
   <section id="veille" class="section">
+  <style>
+    /* ── mise en page en 2 colonnes (au cas où ton CSS « À PROPOS » est cassé) ── */
+    #veille .about-cols { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; }
+    #veille .aside-block { margin-bottom: 1.5rem; }
+    @media (max-width: 700px) { #veille .about-cols { grid-template-columns: 1fr; gap: 2rem; } }
+    /* ── VEILLE (ajouts) ── */
+    .veille-q { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--ink2); margin: 0 0 2.5rem 16px; max-width: 720px; line-height: 1.5; }
+    .veille-method p { font-size: .9rem; color: var(--ink2); line-height: 1.75; margin-bottom: .6rem; }
+    .veille-method strong { color: var(--ink); font-weight: 600; }
+    .veille-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); margin-bottom: 3rem; }
+    .veille-cell { padding: 1.8rem 1.6rem; border-right: 1px solid var(--border); }
+    .veille-cell:last-child { border-right: none; }
+    .veille-cell-label { font-size: .68rem; text-transform: uppercase; letter-spacing: .14em; color: var(--red); margin-bottom: .6rem; }
+    .veille-cell-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; color: var(--ink); margin-bottom: .6rem; line-height: 1.2; }
+    .veille-cell p { font-size: .86rem; color: var(--ink2); line-height: 1.7; }
+    .table-wrap { overflow-x: auto; margin-bottom: 3rem; }
+    .table-wrap .bts-table { min-width: 680px; }
+    .table-wrap .bts-table td:nth-child(2) { white-space: nowrap; color: var(--ink); }
+    @media (max-width: 700px) {
+      .veille-grid { grid-template-columns: 1fr; }
+      .veille-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .veille-cell:last-child { border-bottom: none; }
+      .veille-q { margin-left: 0; }
+    }
+  </style>
     <div class="section-inner fade">
       <div class="sec-head">
         <span class="sec-num">07</span>
